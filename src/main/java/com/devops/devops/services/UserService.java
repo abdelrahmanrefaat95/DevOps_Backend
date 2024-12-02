@@ -58,7 +58,7 @@ public class UserService {
     }
 
     public BaseResponse login(String email, String password) {
-       User  user= userDao.findByEmailAndPassword(email, password);
+       User user= userDao.findByEmailAndPassword(email, password);
         BaseResponse response = new BaseResponse();
        if(user!=null){
             response.setReplyCode("200");
