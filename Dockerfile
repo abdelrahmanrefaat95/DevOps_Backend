@@ -9,7 +9,7 @@ COPY pom.xml ./
 COPY src ./src
 
 # Build the application
-RUN mvn clean package -DskipTests
+RUN mvn clean install -DskipTests
 
 # Use an official Java 8 runtime image to run the application
 FROM eclipse-temurin:8-jre
