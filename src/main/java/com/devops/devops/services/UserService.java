@@ -20,8 +20,7 @@ public class UserService {
     public BaseResponse create(UserModel userModel) {
         BaseResponse response = new BaseResponse();
         try{
-            User user = createUserEntity(userModel);
-            userDao.save(user);
+            userDao.save(createUserEntity(userModel));
             response.setReplyCode("200");
             response.setReplyMessage("CREATED_SUCCESSFULLY");
         } catch (Exception exception){
@@ -39,9 +38,9 @@ public class UserService {
 
 
     private void constructUserEntity(UserModel userModel, User user) {
-        userModel.setName(userModel.getName());
-        userModel.setEmail(userModel.getEmail());
-        userModel.setPassword(userModel.getPassword());
+        user.setName(userModel.getName());
+        user.setEmail(userModel.getEmail());
+        user.setPassword(userModel.getPassword());
     }
 
     private UserModel constructUserModel(User user) {
