@@ -6,11 +6,13 @@ import com.devops.devops.models.BaseResponse;
 import com.devops.devops.models.UserListModel;
 import com.devops.devops.models.UserModel;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -57,15 +59,20 @@ public class UserService {
     }
 
     public BaseResponse login(String email, String password) {
-       User user= userDao.findByEmailAndPassword(email, password);
+        User user= userDao.findByEmailAndPassword(email, password);
         BaseResponse response = new BaseResponse();
-       if(user!=null){
-            response.setReplyCode("200");
-            response.setReplyMessage("LOGIN_SUCCESSFULLY");
-        }else {
-           response.setReplyCode("422");
-           response.setReplyMessage("Login Failed");
+       try {
+           if (user != null) {
+               response.setReplyCode("200");
+               response.setReplyMessage("LOGIN_SUCCESSFULLY");
+           } else {
+               response.setReplyCode("422");
+               response.setReplyMessage("Login Failed");
+           }
+       }catch (Exception exception){
+           log.error("Exception While login {}",exception.getMessage());
        }
+       log.debug("Response : {}", response);
         return response;
     }
 
