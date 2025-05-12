@@ -12,8 +12,8 @@
 	<artifactId>devops</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
-	<name>DevOpsBuildToolDemo</name>
-	<description>Demo For Maven Ana Angular</description>
+	<name>UserMgmtDemo</name>
+	<description>DevOps Build Tool Demo</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -60,6 +60,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>UserMgmtDemo</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
