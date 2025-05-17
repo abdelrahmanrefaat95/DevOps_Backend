@@ -10,7 +10,6 @@ services:
       - app-network
     ports:
       - "4200:4200"
-
   app:
     build: .
     container_name: spring-microservice
@@ -24,7 +23,6 @@ services:
       - app-network
     ports:
       - "8040:8040"
-
   db:
     image: mysql:8.0
     container_name: mysql-db
