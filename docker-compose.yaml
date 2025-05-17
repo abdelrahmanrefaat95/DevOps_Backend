@@ -2,14 +2,14 @@ version: '3.8'
 
 services:
   angular-app:
-    build: D:/ShoRouK/Tasks/devops/DevOps_MVN_Client
+    build: https://github.com/ShoroukNabil/DevOps_MVN_Client.git
     container_name: angular_app
     depends_on:
       - app
     networks:
       - app-network
     ports:
-      - "4200:80"
+      - "4200:4200"
   app:
     build: .
     container_name: spring-microservice
