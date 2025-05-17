@@ -23,5 +23,10 @@ pipeline {
                 sh 'npm -v || echo "npm not found"'
             }
         }
+        stage('Start APP'){
+            steps{
+                mvnStart()
+            }
+        }
     }
 }
