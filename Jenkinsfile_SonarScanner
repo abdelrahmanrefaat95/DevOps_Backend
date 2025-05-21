@@ -10,22 +10,15 @@ pipeline {
     }
 
     stages {
-   stage('Dependency Check') {
-            steps {
-            sh '''
-            mkdir -p dependency-check-report
-            docker run --rm
-            -v $PWD:/src
-            -v $PWD/dependency-check-report:/report
-            owasp/dependency-check:latest
-            --project "DevOpsBuildToolDemo"
-            --format HTML
-            --format XML
-            --scan /src
-            --out /report
-            '''
-            }
-        }
+  stage('OWASP Dependency Check') {
+  steps {
+    sh '''
+      mkdir -p dependency-check-report
+      dependency-check.sh --project "DevOpsBuildToolDemo" --scan . --format HTML --format XML --out dependency-check-report
+    '''
+  }
+}
+
 
         stage('SonarQube Analysis') {
             steps {
