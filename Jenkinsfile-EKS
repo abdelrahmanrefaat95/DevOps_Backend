@@ -8,12 +8,12 @@ pipeline {
             }
         }
 
-        stage('Deploy Backend 1') {
+        stage('Deploy') {
             steps {
                 echo "Applying backend1 deployment and service"
                 sh '''
-                    kubectl apply -f k8s/backend1/deployment.yaml
-                    kubectl apply -f k8s/backend1/service.yaml
+                    kubectl apply -f k8s/deployment.yaml
+                    kubectl apply -f k8s/service.yaml
                 '''
             }
         }
