@@ -7,17 +7,13 @@ phases:
       
   pre_build:
     commands:
-      - echo Installing Maven 3.8.6...
-      - wget https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
-      - tar -xzf apache-maven-3.8.6-bin.tar.gz
-      - mv apache-maven-3.8.6 /opt/maven
-      - export PATH=/opt/maven/bin:$PATH
-      - mvn -version
+      - echo Installing Maven...
+      - yum install -y maven
+
       
   build:
     commands:
       - echo Building the Java application...
-      - export PATH=/opt/maven/bin:$PATH
       - mvn clean package -DskipTests
       
   post_build:
