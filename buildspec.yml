@@ -1,0 +1,38 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+      
+  pre_build:
+    commands:
+      - echo Installing Maven...
+      - apt-get update
+      - apt-get install -y maven
+      
+  build:
+    commands:
+      - echo Building the Java application...
+      - mvn clean package -DskipTests
+      
+  post_build:
+    commands:
+      - echo Build completed successfully!
+      - ls -la target/
+
+artifacts:
+  files:
+    - .env
+    - target/*.war
+    - appspec.yml
+    - shells/**/*
+    - .sequelizerc
+    - rbac_model.conf
+    - CHANGELOG.md
+  discard-paths: no
+  base-directory: .
+  
+cache:
+  paths:
+    - '/root/.m2/**/*'
