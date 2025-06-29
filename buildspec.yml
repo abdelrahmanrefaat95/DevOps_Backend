@@ -4,12 +4,12 @@ phases:
   install:
     runtime-versions:
       java: openjdk8
-      
-  pre_build:
     commands:
-      - echo Installing Maven...
-      - yum install -y maven
-
+      - echo Installing Maven 3.8.6...
+      - wget https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+      - tar -xzf apache-maven-3.8.6-bin.tar.gz
+      - export PATH=/codebuild/output/src*/apache-maven-3.8.6/bin:$PATH
+      - mvn --version
       
   build:
     commands:
@@ -23,15 +23,10 @@ phases:
 
 artifacts:
   files:
-    - .env
     - target/*.war
     - appspec.yml
-    - shells/**/*
-    - .sequelizerc
-    - rbac_model.conf
-    - CHANGELOG.md
+    - scripts/**/*
   discard-paths: no
-  base-directory: .
   
 cache:
   paths:
